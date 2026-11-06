@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "scoped-validation",
+  "runId": "ticket-api-implementation-20261106T014300Z",
+  "startedAt": "2026-11-06T01:36:00Z",
+  "completedAt": "2026-11-06T01:43:00Z",
+  "scope": "Backend REST API for ticket intake, catalog lookups, queues, assignment, and lifecycle actions; frontend implementation and full application acceptance are out of scope.",
+  "harnessExecuted": false,
+  "implementationReference": "uncommitted working tree; repository HEAD unavailable (no commit recorded)",
+  "result": "PASS_SCOPED",
+  "acceptance": "NOT_EVALUATED: this is not the complete application harness or final acceptance run.",
+  "gates": [
+    {
+      "name": "unit_and_contract_tests",
+      "command": "npm test",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "Test Files 8 passed (8); Tests 42 passed (42).",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "api_contract_tests",
+      "command": "npm run test:contract",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "Test Files 1 passed (1); Tests 9 passed (9).",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "mongodb_api_integration_tests",
+      "command": "MONGODB_TEST_URI=<test-scoped URI> npm run test:integration",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "Test Files 1 passed (1); Tests 2 passed (2). Executed against an isolated test-scoped MongoDB 8.0 database; temporary container stopped after validation.",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "backend_build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "TypeScript backend build completed successfully.",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "workspace_typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "TypeScript workspace checks completed successfully.",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "eslint",
+      "command": "npm run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "ESLint completed with no errors or warnings.",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    }
+  ],
+  "notRun": [
+    {
+      "name": "complete_mandatory_harness",
+      "reason": "No .harness/run-harness.sh exists in the Part-1A workspace."
+    },
+    {
+      "name": "openapi_document_validation_and_generated_frontend_types",
+      "reason": "Foundational task T010 remains incomplete; the frontend workspace has not been initialized."
+    },
+    {
+      "name": "dedicated_sast",
+      "reason": "Only ESLint, including its configured security rules, was run; no separate SAST gate is configured."
+    },
+    {
+      "name": "frontend_tests_browser_accessibility_and_performance",
+      "reason": "Frontend tasks and full-feature acceptance remain incomplete."
+    }
+  ],
+  "securityFindings": {
+    "lintSecurityRules": "ESLint with the configured security plugin passed.",
+    "dedicatedSastFindings": "NOT_ASSESSED"
+  },
+  "repairCycle": {
+    "necessary": false,
+    "note": "The Mongoose update-option deprecation and Vitest test-discovery configuration were corrected during implementation; final scoped checks passed. This is not a harness repair-cycle record."
+  },
+  "evidencePaths": [
+    "evidence/harness-results/ticket-api-implementation-20261106T014300Z.json",
+    "evidence/harness-log.md"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "final-generation-snapshot",
+  "snapshotCapturedAt": "2026-11-06T03:19:57.757Z",
+  "implementationReference": {
+    "commit": null,
+    "reference": "Uncommitted Part-1A working tree; no commit is available."
+  },
+  "approvedCriteria": [
+    "specs/001-support-ticket-desk/spec.md",
+    "specs/001-support-ticket-desk/plan.md",
+    "specs/001-support-ticket-desk/data-model.md",
+    "specs/001-support-ticket-desk/contracts/openapi.yaml",
+    "specs/001-support-ticket-desk/tasks.md",
+    ".specify/memory/constitution.md"
+  ],
+  "finalRunId": "harness-20261106T031947Z-66b3c540",
+  "finalRunResult": "../harness-results/harness-20261106T031947Z-66b3c540.json",
+  "overallStatus": "PASS",
+  "gateSummary": {
+    "lint": "PASS",
+    "security-sast-and-secrets": "PASS",
+    "unit-tests": "PASS (74 tests)",
+    "api-contract-tests": "PASS (10 tests)",
+    "openapi-validation": "PASS",
+    "mongodb-integration-tests": "PASS (2 tests)",
+    "critical-branch-coverage": "PASS (100%, 97/97 branches)",
+    "ticket-list-performance": "PASS (100/100 actions under 2 seconds; p95 13.46 ms)"
+  },
+  "repairs": [
+    {
+      "attempt": 1,
+      "rootCause": "The original tests did not execute all branches in critical ticket services and serializers; coverage was 75.25%, below the required 90%.",
+      "diagnostic": "ERROR: Coverage for branches (75.25%) does not meet global threshold (90%).",
+      "thresholdChanged": false,
+      "revalidation": "Targeted coverage reached 100%; final mandatory harness passed."
+    },
+    {
+      "attempt": 1,
+      "rootCause": "The backend server entry point mounted an empty Express router instead of the versioned API router.",
+      "diagnostic": "GET /api/v1/departments returned HTTP 404 during the local startup smoke check.",
+      "revalidation": "The backend and Vite proxy returned HTTP 200 after the server router was corrected."
+    },
+    {
+      "attempt": 1,
+      "rootCause": "The skip link's #main-content target was interpreted by the hash router as an application route, rendering Page not found instead of moving keyboard focus.",
+      "diagnostic": "Chromium keyboard walkthrough: activating Skip to content changed the page to Page not found.",
+      "thresholdChanged": false,
+      "revalidation": "The skip link now focuses main#main-content without changing the route. The regression test and full mandatory harness passed."
+    }
+  ],
+  "knownLimitations": [
+    "T057 browser, device, assistive-technology, WCAG 2.2 AA, and 10-participant usability evaluation is pending.",
+    "One integrated Chromium workflow and responsive viewport samples completed; Safari, Firefox, Edge, iOS Safari, Android Chrome, screen-reader, formal WCAG, and 10-participant usability evaluations remain pending.",
+    "No commit reference exists; the implementation remains an uncommitted working tree.",
+    "Automated success is not human acceptance."
+  ],
+  "humanReviewPackage": "./human-review.md",
+  "humanAcceptance": "PENDING"
+}

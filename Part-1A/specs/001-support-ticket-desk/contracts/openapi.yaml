@@ -1,0 +1,534 @@
+openapi: 3.1.1
+info:
+  title: Internal Issue Tracker API
+  version: 1.0.0
+  description: |
+    Internal REST API for ticket intake, queues, assignment and lifecycle updates.
+    The application does not authenticate users; deployment access must be restricted
+    by the internal operating environment.
+servers:
+  - url: /api/v1
+    description: Same-origin internal application API
+tags:
+  - name: Catalogs
+  - name: Tickets
+paths:
+  /departments:
+    get:
+      tags: [Catalogs]
+      operationId: listDepartments
+      summary: List active departments available for ticket intake
+      responses:
+        "200":
+          description: Active department choices
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Department"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /staff:
+    get:
+      tags: [Catalogs]
+      operationId: listStaff
+      summary: List staff for assignment or assignee filtering
+      parameters:
+        - name: eligibility
+          in: query
+          description: |
+            `assignable` returns active support/operations staff;
+            `all` returns roster entries needed to display/filter existing assignments.
+          schema:
+            type: string
+            enum: [assignable, all]
+            default: assignable
+      responses:
+        "200":
+          description: Staff choices
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/StaffMember"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets:
+    get:
+      tags: [Tickets]
+      operationId: listTickets
+      summary: List tickets in a queue with combined filters
+      description: |
+        Filters combine using AND semantics. `assigned` includes any non-archived
+        ticket with an assignee and is not scoped to the current user. `all` includes
+        all non-archived tickets. A status filter that conflicts with the selected
+        view returns an empty result.
+      parameters:
+        - name: view
+          in: query
+          schema:
+            type: string
+            enum: [open, assigned, archived, all]
+            default: open
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/TicketStatus"
+        - name: priority
+          in: query
+          schema:
+            $ref: "#/components/schemas/Priority"
+        - name: assigneeId
+          in: query
+          schema:
+            $ref: "#/components/schemas/ObjectId"
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        "200":
+          description: Matching tickets and pagination details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TicketPage"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+    post:
+      tags: [Tickets]
+      operationId: createTicket
+      summary: Create an Open ticket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTicket"
+      responses:
+        "201":
+          description: Ticket created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    get:
+      tags: [Tickets]
+      operationId: getTicket
+      summary: Retrieve a ticket by its human-readable reference
+      responses:
+        "200":
+          description: Ticket details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}/assignee:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    patch:
+      tags: [Tickets]
+      operationId: updateTicketAssignee
+      summary: Assign, reassign or unassign a ticket while Open or In Progress
+      description: |
+        `assigneeId: null` is allowed only while Open. A non-null assignee must be
+        active and have the support or operations role. An In Progress ticket must
+        always retain exactly one eligible assignee.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [assigneeId]
+              properties:
+                assigneeId:
+                  oneOf:
+                    - $ref: "#/components/schemas/ObjectId"
+                    - type: "null"
+      responses:
+        "200":
+          description: Updated ticket
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}/transitions:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    post:
+      tags: [Tickets]
+      operationId: transitionTicket
+      summary: Apply a permitted non-confirmation lifecycle action
+      description: |
+        Actions are validated against the current status. `reopen` explicitly moves
+        Resolved to Open; the assignee may then be changed before starting work.
+        Closure and archival use their dedicated confirmation routes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  additionalProperties: false
+                  required: [action]
+                  properties:
+                    action:
+                      const: start
+                      description: Open to In Progress; requires an eligible assignee.
+                - type: object
+                  additionalProperties: false
+                  required: [action]
+                  properties:
+                    action:
+                      const: returnToOpen
+                      description: In Progress to Open.
+                - type: object
+                  additionalProperties: false
+                  required: [action, resolutionNote]
+                  properties:
+                    action:
+                      const: resolve
+                      description: In Progress to Resolved.
+                    resolutionNote:
+                      type: string
+                      minLength: 1
+                      description: Non-empty after trimming whitespace.
+                - type: object
+                  additionalProperties: false
+                  required: [action]
+                  properties:
+                    action:
+                      const: reopen
+                      description: Resolved to Open; retains its current assignee.
+      responses:
+        "200":
+          description: Updated ticket
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}/resolution:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    patch:
+      tags: [Tickets]
+      operationId: updateResolutionNote
+      summary: Revise the resolution note while the ticket is Resolved
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [resolutionNote]
+              properties:
+                resolutionNote:
+                  type: string
+                  minLength: 1
+                  description: Non-empty after trimming whitespace.
+      responses:
+        "200":
+          description: Updated ticket
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}/close:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    post:
+      tags: [Tickets]
+      operationId: closeTicket
+      summary: Close a Resolved ticket after explicit confirmation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Confirmation"
+      responses:
+        "200":
+          description: Closed ticket
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+  /tickets/{ticketRef}/archive:
+    parameters:
+      - $ref: "#/components/parameters/TicketReference"
+    post:
+      tags: [Tickets]
+      operationId: archiveTicket
+      summary: Archive a Closed ticket after a separate explicit confirmation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Confirmation"
+      responses:
+        "200":
+          description: Archived ticket
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ticket"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "500":
+          $ref: "#/components/responses/UnexpectedError"
+components:
+  parameters:
+    TicketReference:
+      name: ticketRef
+      in: path
+      required: true
+      description: Human-readable ticket reference.
+      schema:
+        type: string
+        pattern: "^TKT-[A-F0-9]{24}$"
+  schemas:
+    ObjectId:
+      type: string
+      pattern: "^[a-fA-F0-9]{24}$"
+    Priority:
+      type: string
+      enum: [Low, Normal, High, Urgent]
+    TicketStatus:
+      type: string
+      enum: [Open, In Progress, Resolved, Closed, Archived]
+    Department:
+      type: object
+      additionalProperties: false
+      required: [id, name]
+      properties:
+        id:
+          $ref: "#/components/schemas/ObjectId"
+        name:
+          type: string
+          minLength: 1
+    StaffMember:
+      type: object
+      additionalProperties: false
+      required: [id, displayName, role, active]
+      properties:
+        id:
+          $ref: "#/components/schemas/ObjectId"
+        displayName:
+          type: string
+          minLength: 1
+        role:
+          type: string
+          enum: [support, operations, other]
+        active:
+          type: boolean
+    CreateTicket:
+      type: object
+      additionalProperties: false
+      required: [title, description, departmentId, priority]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 120
+          description: Whitespace-only values are invalid after trimming.
+        description:
+          type: string
+          minLength: 1
+          maxLength: 5000
+          description: Whitespace-only values are invalid after trimming.
+        departmentId:
+          $ref: "#/components/schemas/ObjectId"
+        priority:
+          $ref: "#/components/schemas/Priority"
+    Ticket:
+      type: object
+      required:
+        - id
+        - reference
+        - title
+        - description
+        - department
+        - priority
+        - status
+        - assignee
+        - resolutionNote
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          $ref: "#/components/schemas/ObjectId"
+        reference:
+          type: string
+          pattern: "^TKT-[A-F0-9]{24}$"
+        title:
+          type: string
+        description:
+          type: string
+        department:
+          $ref: "#/components/schemas/Department"
+        priority:
+          $ref: "#/components/schemas/Priority"
+        status:
+          $ref: "#/components/schemas/TicketStatus"
+        assignee:
+          oneOf:
+            - $ref: "#/components/schemas/StaffMember"
+            - type: "null"
+        resolutionNote:
+          oneOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    TicketPage:
+      type: object
+      required: [items, page, pageSize, total, totalPages]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ticket"
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    Confirmation:
+      type: object
+      additionalProperties: false
+      required: [confirmed]
+      properties:
+        confirmed:
+          const: true
+          description: Must be true; cancellation sends no request.
+    ApiError:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message, requestId]
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            fields:
+              type: object
+              additionalProperties:
+                type: string
+            requestId:
+              type: string
+  responses:
+    ValidationError:
+      description: Invalid request data or missing required confirmation/note.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    NotFoundError:
+      description: The referenced ticket, department or staff member does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    ConflictError:
+      description: Lifecycle or assignment rule prevents this operation.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+    UnexpectedError:
+      description: Unexpected failure; details are sanitized and identified by request ID.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"

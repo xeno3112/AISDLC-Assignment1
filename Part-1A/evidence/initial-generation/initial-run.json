@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "initial-generation-snapshot",
+  "snapshotCapturedAt": "2026-11-06T02:16:43.573Z",
+  "implementationReference": {
+    "commit": null,
+    "reference": "Uncommitted Part-1A working tree before the coverage repair; no commit is available."
+  },
+  "approvedCriteria": [
+    "specs/001-support-ticket-desk/spec.md",
+    "specs/001-support-ticket-desk/plan.md",
+    "specs/001-support-ticket-desk/tasks.md",
+    ".specify/memory/constitution.md"
+  ],
+  "baselineRunId": "harness-20261106T021632Z-3c60238b",
+  "baselineRunResult": "../harness-results/harness-20261106T021632Z-3c60238b.json",
+  "baselineRunStatus": "FAIL",
+  "gateSummary": {
+    "passed": [
+      "lint",
+      "security-sast-and-secrets",
+      "unit-tests",
+      "api-contract-tests",
+      "openapi-validation",
+      "mongodb-integration-tests",
+      "ticket-list-performance"
+    ],
+    "failed": [
+      {
+        "gate": "critical-branch-coverage",
+        "observedBranchesPercent": 75.25,
+        "requiredBranchesPercent": 90,
+        "diagnostic": "ERROR: Coverage for branches (75.25%) does not meet global threshold (90%)."
+      }
+    ]
+  },
+  "repairStatusAtCapture": "No repair had been attempted when this baseline was captured.",
+  "humanAcceptance": "NOT_EVALUATED"
+}

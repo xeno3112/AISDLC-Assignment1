@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "scoped-validation",
+  "runId": "backend-foundation-20261106T011912Z",
+  "startedAt": "2026-11-06T01:19:12.807Z",
+  "completedAt": "2026-11-06T01:19:19.700Z",
+  "scope": "Backend setup and data models only; no API implementation.",
+  "harnessExecuted": false,
+  "implementationReference": "uncommitted working tree; repository HEAD unavailable (no commit recorded)",
+  "result": "PASS_SCOPED",
+  "acceptance": "NOT_EVALUATED: this is not the complete application harness or final acceptance run.",
+  "gates": [
+    {
+      "name": "backend_unit_tests",
+      "command": "npm run test:backend",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "\n> test:backend\n> vitest run tests/unit/backend\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  4 passed (4)\n      Tests  17 passed (17)\n   Start at  06:49:13\n   Duration  365ms (import 88%, tests 7%, transform 4%, worker 1%)\n\n",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "backend_typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "\n> typecheck\n> npm run typecheck --workspaces --if-present\n\n\n> typecheck\n> tsc --project tsconfig.json --noEmit\n\n",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "eslint_with_security_plugin",
+      "command": "npm run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "\n> lint\n> eslint .\n\n",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "backend_build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "\n> build\n> npm run build --workspace=@support-ticket-desk/backend\n\n\n> build\n> tsc --project tsconfig.json\n\n",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "dependency_audit",
+      "command": "npm audit",
+      "status": "PASS",
+      "exitCode": 0,
+      "stdout": "found 0 vulnerabilities\n",
+      "stderr": "",
+      "signal": null,
+      "error": null
+    },
+    {
+      "name": "missing_database_configuration_startup_guard",
+      "command": "env -u MONGODB_URI -u MONGODB_TEST_URI NODE_ENV=development node src/backend/dist/server.js",
+      "status": "PASS",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Invalid backend configuration (MONGODB_URI: is required for this environment).\n",
+      "expected": "Exit 1 and report that MONGODB_URI is required.",
+      "observed": "Exit 1; Invalid backend configuration (MONGODB_URI: is required for this environment)."
+    }
+  ],
+  "notRun": [
+    {
+      "name": "dedicated_sast",
+      "reason": "The full mandatory harness is not present in this Part-1A workspace; ESLint security-plugin rules ran as part of lint."
+    },
+    {
+      "name": "openapi_validation_and_api_contract_tests",
+      "reason": "API implementation was explicitly excluded from the requested scope."
+    },
+    {
+      "name": "frontend_tests_and_browser_accessibility_performance_checks",
+      "reason": "Frontend implementation and full feature validation remain incomplete."
+    },
+    {
+      "name": "complete_mandatory_harness",
+      "reason": "No .harness/run-harness.sh exists in this Part-1A workspace."
+    }
+  ],
+  "securityFindings": {
+    "dependencyAudit": "No known vulnerabilities reported by npm audit.",
+    "lintSecurityRules": "ESLint including eslint-plugin-security recommended rules passed.",
+    "criticalOrHighFindingsFromDedicatedSast": "NOT_ASSESSED"
+  },
+  "repairCycle": {
+    "necessary": false,
+    "note": "An earlier lint finding during implementation was corrected and the affected checks were rerun successfully; no repair cycle was necessary for this recorded verification run."
+  },
+  "evidencePaths": [
+    "evidence/harness-results/backend-foundation-20261106T011912Z.json",
+    "evidence/harness-log.md"
+  ]
+}

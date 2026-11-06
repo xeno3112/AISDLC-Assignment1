@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "mandatory-harness",
+  "runId": "harness-20261106T031947Z-66b3c540",
+  "startedAt": "2026-11-06T03:19:47.350Z",
+  "completedAt": "2026-11-06T03:19:57.757Z",
+  "implementationReference": {
+    "commit": null,
+    "workingTree": "no commit available"
+  },
+  "scope": [
+    "ESLint",
+    "ESLint security-plugin SAST",
+    "secret-pattern scan",
+    "unit tests",
+    "API contract tests",
+    "OpenAPI validation",
+    "isolated MongoDB integration tests",
+    "critical business-logic branch coverage",
+    "2,000-ticket list/filter performance"
+  ],
+  "harnessExecuted": true,
+  "gates": [
+    {
+      "name": "lint",
+      "command": "bash .harness/lint/run.sh",
+      "startedAt": "2026-11-06T03:19:47.352Z",
+      "completedAt": "2026-11-06T03:19:48.465Z",
+      "durationMs": 1113,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> lint\n> eslint .\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "security-sast-and-secrets",
+      "command": "bash .harness/security/run.sh",
+      "startedAt": "2026-11-06T03:19:48.465Z",
+      "completedAt": "2026-11-06T03:19:49.327Z",
+      "durationMs": 862,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "Secret-pattern scan passed for source, tests, harness, and recorded harness output.\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "unit-tests",
+      "command": "npm test",
+      "startedAt": "2026-11-06T03:19:49.327Z",
+      "completedAt": "2026-11-06T03:19:51.124Z",
+      "durationMs": 1797,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test\n> vitest run\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  12 passed (12)\n      Tests  74 passed (74)\n   Start at  08:49:49\n   Duration  1.40s (import 50%, tests 23%, environment 17%, transform 10%, worker 1%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "api-contract-tests",
+      "command": "npm run test:contract",
+      "startedAt": "2026-11-06T03:19:51.124Z",
+      "completedAt": "2026-11-06T03:19:51.895Z",
+      "durationMs": 771,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test:contract\n> vitest run tests/contract/api\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  10 passed (10)\n   Start at  08:49:51\n   Duration  386ms (import 75%, tests 17%, transform 7%, worker 1%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "openapi-validation",
+      "command": "npm run openapi:check --workspace=@support-ticket-desk/frontend",
+      "startedAt": "2026-11-06T03:19:51.895Z",
+      "completedAt": "2026-11-06T03:19:52.890Z",
+      "durationMs": 995,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> openapi:check\n> openapi-typescript ../../specs/001-support-ticket-desk/contracts/openapi.yaml -o src/api/openapi.ts --check\n\n✨ openapi-typescript 7.13.0\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "mongodb-integration-tests",
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-06T03:19:52.890Z",
+      "completedAt": "2026-11-06T03:19:54.098Z",
+      "durationMs": 1208,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test:integration\n> vitest run --config vitest.integration.config.ts\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  08:49:53\n   Duration  784ms (tests 58%, import 31%, transform 11%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "critical-branch-coverage",
+      "command": "npm test -- --coverage",
+      "startedAt": "2026-11-06T03:19:54.098Z",
+      "completedAt": "2026-11-06T03:19:56.171Z",
+      "durationMs": 2073,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test\n> vitest run --coverage\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n      Coverage enabled with v8\n\n\n Test Files  12 passed (12)\n      Tests  74 passed (74)\n   Start at  08:49:54\n   Duration  1.63s (import 45%, tests 28%, environment 18%, transform 5%, worker 3%)\n\n\u001b[34m % \u001b[39m\u001b[2mCoverage report from \u001b[22m\u001b[33mv8\u001b[39m\nNo files with missing coverage.\n7 files fully covered.\n\n=============================== Coverage summary ===============================\nStatements   : 100% ( 166/166 )\nBranches     : 100% ( 97/97 )\nFunctions    : 100% ( 21/21 )\nLines        : 100% ( 166/166 )\n================================================================================\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "ticket-list-performance",
+      "command": "node_modules/.bin/tsx .harness/test/ticket-list-performance.ts",
+      "startedAt": "2026-11-06T03:19:56.171Z",
+      "completedAt": "2026-11-06T03:19:57.757Z",
+      "durationMs": 1586,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"benchmark\": \"MongoDB-backed ticket list/filter API\",\n  \"datasetTickets\": 2000,\n  \"actions\": 100,\n  \"actionsUnderTarget\": 100,\n  \"targetMs\": 2000,\n  \"passRatePercent\": 100,\n  \"p95Ms\": 13.46,\n  \"maxMs\": 33.18,\n  \"scenarios\": [\n    \"open\",\n    \"assigned\",\n    \"archived\",\n    \"combined-filters\"\n  ],\n  \"environment\": \"local disposable MongoDB test database\"\n}\n",
+      "stderr": "",
+      "findings": []
+    }
+  ],
+  "unrunGates": [],
+  "findings": [],
+  "overallStatus": "PASS",
+  "humanAcceptance": "NOT_EVALUATED",
+  "evidencePaths": [
+    "evidence/harness-results/harness-20261106T031947Z-66b3c540.json",
+    "evidence/harness-log.md"
+  ]
+}

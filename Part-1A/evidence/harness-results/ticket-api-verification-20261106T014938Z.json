@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "scoped-validation",
+  "runId": "ticket-api-verification-20261106T014938Z",
+  "startedAt": "2026-11-06T01:49:30.594Z",
+  "completedAt": "2026-11-06T01:49:38.512Z",
+  "scope": "Backend REST API for ticket intake, catalog lookups, queues, assignment, and lifecycle actions; frontend implementation and full application acceptance are out of scope.",
+  "harnessExecuted": false,
+  "implementationReference": "uncommitted working tree; repository HEAD unavailable (no commit recorded)",
+  "result": "PASS_SCOPED",
+  "acceptance": "NOT_EVALUATED: this is not the complete application harness or final acceptance run.",
+  "gates": [
+    {
+      "name": "unit_and_contract_tests",
+      "command": "npm test",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:30.594Z",
+      "completedAt": "2026-11-06T01:49:31.512Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> test\n> vitest run\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  8 passed (8)\n      Tests  42 passed (42)\n   Start at  07:19:30\n   Duration  517ms (import 83%, transform 9%, tests 6%, worker 1%)\n\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "name": "api_contract_tests",
+      "command": "npm run test:contract",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:31.513Z",
+      "completedAt": "2026-11-06T01:49:32.283Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> test:contract\n> vitest run tests/contract/api\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  07:19:31\n   Duration  376ms (import 77%, tests 16%, transform 6%, worker 1%)\n\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "name": "mongodb_api_integration_tests",
+      "command": "MONGODB_TEST_URI=<test-scoped URI> npm run test:integration",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:32.283Z",
+      "completedAt": "2026-11-06T01:49:33.396Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> test:integration\n> vitest run --config vitest.integration.config.ts\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  07:19:32\n   Duration  715ms (tests 60%, import 37%, transform 3%)\n\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "name": "backend_build",
+      "command": "npm run build",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:33.396Z",
+      "completedAt": "2026-11-06T01:49:35.486Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> build\n> npm run build --workspace=@support-ticket-desk/backend\n\n\n> build\n> tsc --project tsconfig.json\n\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "name": "workspace_typecheck",
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:35.486Z",
+      "completedAt": "2026-11-06T01:49:37.600Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> typecheck\n> npm run typecheck --workspaces --if-present\n\n\n> typecheck\n> tsc --project tsconfig.json --noEmit\n\n",
+      "stderr": "",
+      "error": null
+    },
+    {
+      "name": "eslint",
+      "command": "npm run lint",
+      "status": "PASS",
+      "startedAt": "2026-11-06T01:49:37.600Z",
+      "completedAt": "2026-11-06T01:49:38.512Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "\n> lint\n> eslint .\n\n",
+      "stderr": "",
+      "error": null
+    }
+  ],
+  "notRun": [
+    {
+      "name": "complete_mandatory_harness",
+      "reason": "No .harness/run-harness.sh exists in the Part-1A workspace."
+    },
+    {
+      "name": "openapi_document_validation_and_generated_frontend_types",
+      "reason": "Foundational task T010 remains incomplete; the frontend workspace has not been initialized."
+    },
+    {
+      "name": "dedicated_sast",
+      "reason": "Only ESLint, including its configured security rules, was run; no separate SAST gate is configured."
+    },
+    {
+      "name": "frontend_tests_browser_accessibility_and_performance",
+      "reason": "Frontend tasks and full-feature acceptance remain incomplete."
+    }
+  ],
+  "securityFindings": {
+    "lintSecurityRules": "ESLint with the configured security plugin passed.",
+    "dedicatedSastFindings": "NOT_ASSESSED"
+  },
+  "repairCycle": {
+    "necessary": false,
+    "note": "This is a fresh scoped verification; it is not the complete harness repair-cycle record."
+  },
+  "evidencePaths": [
+    "evidence/harness-results/ticket-api-verification-20261106T014938Z.json",
+    "evidence/harness-log.md"
+  ]
+}

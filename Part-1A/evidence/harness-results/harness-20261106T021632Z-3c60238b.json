@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "mandatory-harness",
+  "runId": "harness-20261106T021632Z-3c60238b",
+  "startedAt": "2026-11-06T02:16:32.838Z",
+  "completedAt": "2026-11-06T02:16:43.573Z",
+  "implementationReference": {
+    "commit": null,
+    "workingTree": "no commit available"
+  },
+  "scope": [
+    "ESLint",
+    "ESLint security-plugin SAST",
+    "secret-pattern scan",
+    "unit tests",
+    "API contract tests",
+    "OpenAPI validation",
+    "isolated MongoDB integration tests",
+    "critical business-logic branch coverage",
+    "2,000-ticket list/filter performance"
+  ],
+  "harnessExecuted": true,
+  "gates": [
+    {
+      "name": "lint",
+      "command": "bash .harness/lint/run.sh",
+      "startedAt": "2026-11-06T02:16:32.840Z",
+      "completedAt": "2026-11-06T02:16:34.349Z",
+      "durationMs": 1509,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> lint\n> eslint .\n\n\n/Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A/.harness/run-harness.mjs\n  138:1  warning  Found mkdirSync from package \"node:fs\" with non literal argument at index 0      security/detect-non-literal-fs-filename\n  140:1  warning  Found writeFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n\n/Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A/.harness/security/check-secrets.mjs\n  45:22  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n  76:20  warning  Found statSync from package \"node:fs\" with non literal argument at index 0      security/detect-non-literal-fs-filename\n  81:19  warning  Found readdirSync from package \"node:fs\" with non literal argument at index 0   security/detect-non-literal-fs-filename\n\n✖ 5 problems (0 errors, 5 warnings)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "security-sast-and-secrets",
+      "command": "bash .harness/security/run.sh",
+      "startedAt": "2026-11-06T02:16:34.349Z",
+      "completedAt": "2026-11-06T02:16:35.181Z",
+      "durationMs": 832,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "Secret-pattern scan passed for source, tests, harness, and recorded harness output.\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "unit-tests",
+      "command": "npm test",
+      "startedAt": "2026-11-06T02:16:35.181Z",
+      "completedAt": "2026-11-06T02:16:37.266Z",
+      "durationMs": 2085,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test\n> vitest run\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  11 passed (11)\n      Tests  57 passed (57)\n   Start at  07:46:35\n   Duration  1.62s (import 45%, environment 26%, tests 20%, transform 9%, worker 1%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "api-contract-tests",
+      "command": "npm run test:contract",
+      "startedAt": "2026-11-06T02:16:37.266Z",
+      "completedAt": "2026-11-06T02:16:38.095Z",
+      "durationMs": 829,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test:contract\n> vitest run tests/contract/api\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  07:46:37\n   Duration  407ms (import 77%, tests 15%, transform 7%, worker 1%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "openapi-validation",
+      "command": "npm run openapi:check --workspace=@support-ticket-desk/frontend",
+      "startedAt": "2026-11-06T02:16:38.095Z",
+      "completedAt": "2026-11-06T02:16:38.663Z",
+      "durationMs": 568,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> openapi:check\n> openapi-typescript ../../specs/001-support-ticket-desk/contracts/openapi.yaml -o src/api/openapi.ts --check\n\n✨ openapi-typescript 7.13.0\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "mongodb-integration-tests",
+      "command": "npm run test:integration",
+      "startedAt": "2026-11-06T02:16:38.663Z",
+      "completedAt": "2026-11-06T02:16:39.827Z",
+      "durationMs": 1164,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "\n> test:integration\n> vitest run --config vitest.integration.config.ts\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  07:46:39\n   Duration  761ms (tests 56%, import 32%, transform 12%)\n\n",
+      "stderr": "",
+      "findings": []
+    },
+    {
+      "name": "critical-branch-coverage",
+      "command": "npm test -- --coverage",
+      "startedAt": "2026-11-06T02:16:39.827Z",
+      "completedAt": "2026-11-06T02:16:41.873Z",
+      "durationMs": 2046,
+      "exitCode": 1,
+      "status": "FAIL",
+      "stdout": "\n> test\n> vitest run --coverage\n\n\n RUN  v5.1.0 /Users/sundram.sharan/Documents/Personal/MTech/Sem1/AI-Augmented Software Development Life Cycle (S1-26_SEZG534)/Assignment 1/Part-1A\n      Coverage enabled with v8\n\n\n Test Files  11 passed (11)\n      Tests  57 passed (57)\n   Start at  07:46:40\n   Duration  1.59s (import 45%, tests 27%, environment 20%, transform 5%, worker 3%)\n\n\u001b[34m % \u001b[39m\u001b[2mCoverage report from \u001b[22m\u001b[33mv8\u001b[39m\n-------------------|---------|----------|---------|---------|-------------------\nFile               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s \n-------------------|---------|----------|---------|---------|-------------------\nAll files          |   82.53 |    75.25 |   95.23 |   82.53 |                   \n ...ent.service.ts |   81.81 |       75 |     100 |   81.81 | 22,25,35,52       \n ...cle.service.ts |   72.72 |    67.74 |     100 |   72.72 | ...04-108,130-134 \n ...tion.routes.ts |      40 |      100 |       0 |      40 | 11-16             \n ticket.service.ts |   80.55 |    71.87 |     100 |   80.55 | ...28,133,140,147 \n-------------------|---------|----------|---------|---------|-------------------\n\n=============================== Coverage summary ===============================\nStatements   : 82.53% ( 137/166 )\nBranches     : 75.25% ( 73/97 )\nFunctions    : 95.23% ( 20/21 )\nLines        : 82.53% ( 137/166 )\n================================================================================\n",
+      "stderr": "ERROR: Coverage for branches (75.25%) does not meet global threshold (90%)\n",
+      "findings": [
+        "Command exited unsuccessfully."
+      ]
+    },
+    {
+      "name": "ticket-list-performance",
+      "command": "node_modules/.bin/tsx .harness/test/ticket-list-performance.ts",
+      "startedAt": "2026-11-06T02:16:41.873Z",
+      "completedAt": "2026-11-06T02:16:43.573Z",
+      "durationMs": 1700,
+      "exitCode": 0,
+      "status": "PASS",
+      "stdout": "{\n  \"benchmark\": \"MongoDB-backed ticket list/filter API\",\n  \"datasetTickets\": 2000,\n  \"actions\": 100,\n  \"actionsUnderTarget\": 100,\n  \"targetMs\": 2000,\n  \"passRatePercent\": 100,\n  \"p95Ms\": 14.63,\n  \"maxMs\": 32.97,\n  \"scenarios\": [\n    \"open\",\n    \"assigned\",\n    \"archived\",\n    \"combined-filters\"\n  ],\n  \"environment\": \"local disposable MongoDB test database\"\n}\n",
+      "stderr": "",
+      "findings": []
+    }
+  ],
+  "unrunGates": [],
+  "findings": [
+    {
+      "gate": "critical-branch-coverage",
+      "detail": "Command exited unsuccessfully."
+    }
+  ],
+  "overallStatus": "FAIL",
+  "humanAcceptance": "NOT_EVALUATED",
+  "evidencePaths": [
+    "evidence/harness-results/harness-20261106T021632Z-3c60238b.json",
+    "evidence/harness-log.md"
+  ]
+}
