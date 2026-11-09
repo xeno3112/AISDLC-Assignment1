@@ -19,6 +19,45 @@
   accessibility, and usability evaluation remains pending and is not represented
   as complete.
 
+## Initial coding-agent generation context
+
+- Coding agent: Copilot SDK in VS Code.
+- Preserved generation request, from the approved specification's `Input`
+  field: “Build an Internal Issue Tracker web application for support and
+  operations teams. Users can submit service tickets with title, description,
+  department and priority; view open and assigned tickets; filter tickets by
+  status, priority and assignee; update ticket progress, assignees and
+  resolution notes; and close or archive resolved tickets after confirmation.
+  Support desktop and mobile browsers. Exclude authentication, collaboration
+  and notifications from the initial scope. Define user stories, functional
+  and non-functional requirements, and measurable acceptance criteria.
+  Identify assumptions and unresolved questions.”
+- Approved task/specification context: [feature specification](../specs/001-support-ticket-desk/spec.md),
+  [implementation plan](../specs/001-support-ticket-desk/plan.md),
+  [data model](../specs/001-support-ticket-desk/data-model.md),
+  [OpenAPI contract](../specs/001-support-ticket-desk/contracts/openapi.yaml),
+  [task list](../specs/001-support-ticket-desk/tasks.md), and
+  [project constitution](../.specify/memory/constitution.md). These define the
+  user stories and measurable requirements, architecture and stack, lifecycle
+  rules, implementation tasks, and required quality/evidence gates.
+- Planned implementation context: a TypeScript modular application with a
+  React/Vite frontend and Express REST API backed by MongoDB/Mongoose, tested
+  with frontend/backend tests, API contract tests, OpenAPI validation, and the
+  mandatory harness. The initial scope excludes authentication, individual
+  permissions, notifications, and collaboration. During planning, the user
+  also selected the refinement that reopening a Resolved ticket returns it to
+  Open so its assignee can be corrected before work resumes; this is recorded
+  in the plan and specification.
+- Baseline reference: the first complete implementation was an uncommitted
+  working tree. The preserved snapshot and first full-harness run are
+  [initial-run.json](./initial-generation/initial-run.json) and
+  [the immutable harness result](./harness-results/harness-20261106T021632Z-3c60238b.json).
+  The snapshot records the harness completion time; the exact code-generation
+  time and the full coding-agent prompt/transcript were not retained. The
+  quoted approved feature request and linked artifacts are the available
+  contemporaneous generation context, not a reconstruction of any missing
+  transcript.
+
 ## Run history
 
 ### `backend-foundation-20261106T011912Z`
