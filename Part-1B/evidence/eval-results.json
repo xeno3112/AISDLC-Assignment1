@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "runId": "2026-11-09T07-35-30-228Z-a567c4a4",
+  "generatedAt": "2026-11-09T07:35:30.229Z",
+  "automatedStatus": "PASS",
+  "aggregateScore": 100,
+  "sensorBoundariesPassed": true,
+  "criticalFailure": false,
+  "configuration": {
+    "provider": "gemini",
+    "modelName": "gemini-3.8-flash",
+    "judgeModel": "gemini-3.8-flash",
+    "generationSeed": 0,
+    "timeoutMs": 120000
+  },
+  "settings": {
+    "dataset": "evals/dataset.json",
+    "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+    "caseCount": 23,
+    "semanticEvaluator": "Gemini structured judge with fixed boolean rubric",
+    "scoringMethod": "Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure."
+  },
+  "thresholds": {
+    "S1 Schema": 100,
+    "S2 Invariant": 100,
+    "S3 Classification": 90,
+    "S4 Priority": 85,
+    "S5 Faithfulness": 95,
+    "S6 Clarification": 90,
+    "S7 Guardrail": 100,
+    "S8 Summary Length": 100
+  },
+  "sensors": [
+    {
+      "name": "S1 Schema",
+      "passed": 23,
+      "applicable": 23,
+      "score": 100,
+      "threshold": 100,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S2 Invariant",
+      "passed": 23,
+      "applicable": 23,
+      "score": 100,
+      "threshold": 100,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S3 Classification",
+      "passed": 17,
+      "applicable": 17,
+      "score": 100,
+      "threshold": 90,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S4 Priority",
+      "passed": 17,
+      "applicable": 17,
+      "score": 100,
+      "threshold": 85,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S5 Faithfulness",
+      "passed": 17,
+      "applicable": 17,
+      "score": 100,
+      "threshold": 95,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S6 Clarification",
+      "passed": 20,
+      "applicable": 20,
+      "score": 100,
+      "threshold": 90,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S7 Guardrail",
+      "passed": 23,
+      "applicable": 23,
+      "score": 100,
+      "threshold": 100,
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "S8 Summary Length",
+      "passed": 17,
+      "applicable": 17,
+      "score": 100,
+      "threshold": 100,
+      "status": "pass",
+      "evidence": []
+    }
+  ],
+  "layers": {
+    "structural": {
+      "score": 100,
+      "status": "pass"
+    },
+    "invariant-property": {
+      "score": 100,
+      "status": "pass"
+    },
+    "semantic-quality": {
+      "score": 100,
+      "status": "pass"
+    }
+  },
+  "failures": [],
+  "repair": {
+    "reEvaluation": true,
+    "repairsRunId": "2026-11-09T07-23-47-172Z-74c2b043"
+  },
+  "humanReview": {
+    "status": "PENDING_HUMAN_REVIEW",
+    "reviewFile": "evidence/human-review.json",
+    "valid": false,
+    "decision": null,
+    "reviewer": null,
+    "timestamp": null,
+    "validationErrors": [
+      "review_must_reference_the_current_evaluation_run"
+    ]
+  },
+  "codingAgentEvidence": {
+    "status": "recorded",
+    "reference": "evidence/coding-agent.json",
+    "sha256": "d4aca777842ce3ac82cc915006d19ee903a1ce7c0e905e9009c7f59bf35dea7e"
+  },
+  "history": [
+    {
+      "runId": "2026-11-09T05-32-40-947Z-47828860",
+      "generatedAt": "2026-11-09T05:32:40.948Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": null
+    },
+    {
+      "runId": "2026-11-09T05-37-30-487Z-6507e0d4",
+      "generatedAt": "2026-11-09T05:37:30.488Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T05-32-40-947Z-47828860"
+    },
+    {
+      "runId": "2026-11-09T05-56-54-497Z-a4e02c2c",
+      "generatedAt": "2026-11-09T05:56:54.498Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T05-37-30-487Z-6507e0d4"
+    },
+    {
+      "runId": "2026-11-09T06-16-20-725Z-78f9dbbc",
+      "generatedAt": "2026-11-09T06:16:20.726Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T05-56-54-497Z-a4e02c2c"
+    },
+    {
+      "runId": "2026-11-09T06-21-20-120Z-a5fceae0",
+      "generatedAt": "2026-11-09T06:21:20.121Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T06-16-20-725Z-78f9dbbc"
+    },
+    {
+      "runId": "2026-11-09T06-25-18-461Z-ebb5a0cb",
+      "generatedAt": "2026-11-09T06:25:18.462Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T06-21-20-120Z-a5fceae0"
+    },
+    {
+      "runId": "2026-11-09T06-29-47-660Z-56942bcc",
+      "generatedAt": "2026-11-09T06:29:47.661Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T06-25-18-461Z-ebb5a0cb"
+    },
+    {
+      "runId": "2026-11-09T06-35-01-889Z-bb81dec6",
+      "generatedAt": "2026-11-09T06:35:01.890Z",
+      "automatedStatus": "FAIL",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T06-29-47-660Z-56942bcc"
+    },
+    {
+      "runId": "2026-11-09T07-23-47-172Z-74c2b043",
+      "generatedAt": "2026-11-09T07:23:47.173Z",
+      "automatedStatus": "PASS",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T06-35-01-889Z-bb81dec6"
+    },
+    {
+      "runId": "2026-11-09T07-35-30-228Z-a567c4a4",
+      "generatedAt": "2026-11-09T07:35:30.229Z",
+      "automatedStatus": "PASS",
+      "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+      "repairOf": "2026-11-09T07-23-47-172Z-74c2b043"
+    }
+  ]
+}

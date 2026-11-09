@@ -1,0 +1,9 @@
+{
+  "evaluationRunId": "replace-with-current-runId",
+  "reviewer": "your name",
+  "decision": "REPLACE_WITH_ACCEPT_OR_REJECT",
+  "justification": "Describe the evidence reviewed and the reason for this decision.",
+  "knownLimitations": "Record known limitations.",
+  "residualRisks": "Record remaining risks.",
+  "timestamp": "2026-11-09T12:00:00.000Z"
+}

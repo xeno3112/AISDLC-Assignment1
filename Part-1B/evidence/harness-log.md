@@ -1,0 +1,761 @@
+# Evaluation Harness Log
+
+Automated harness checks passed locally in the current environment, but no live
+Gemini evaluation has been run because the API key is not configured here.
+
+Project status remains `PENDING_HUMAN_REVIEW` until a real human reviewer records
+an explicit ACCEPT or REJECT decision. Automated PASS is not operational acceptance.
+
+Known limitations:
+- Live LLM classification has not been executed in this environment because `GEMINI_API_KEY` is absent.
+- The synthetic fixed dataset validates the evaluation pipeline, but it is not a production sign-off.
+
+Residual risks:
+- Live model behavior may differ from the fixed evaluation set.
+- Operational rollout requires explicit human review and documented acceptance criteria.
+
+## Evaluation 2026-11-09T05-32-40-947Z-47828860
+
+- Generated: 2026-11-09T05:32:40.948Z
+- Automated result: FAIL (3.26% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 10000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 4.35% (fail)
+- invariant-property: 8.70% (fail)
+- semantic-quality: 1.74% (fail)
+- Sensor scores:
+- S1 Schema: 2/23 (8.70%; threshold 100%; fail)
+- S2 Invariant: 2/23 (8.70%; threshold 100%; fail)
+- S3 Classification: 0/17 (0.00%; threshold 90%; fail)
+- S4 Priority: 0/17 (0.00%; threshold 85%; fail)
+- S5 Faithfulness: 0/17 (0.00%; threshold 95%; fail)
+- S6 Clarification: 0/20 (0.00%; threshold 90%; fail)
+- S7 Guardrail: 2/23 (8.70%; threshold 100%; fail)
+- S8 Summary Length: 0/17 (0.00%; threshold 100%; fail)
+- Failures:
+- S1 Schema / technical-critical-outage: response_not_object (LlmProviderError)
+- S1 Schema / technical-high-api-errors: response_not_object (LlmProviderError)
+- S1 Schema / technical-medium-slow-report: response_not_object (LlmProviderError)
+- S1 Schema / technical-low-cosmetic: response_not_object (LlmProviderError)
+- S1 Schema / access-critical-agent-lockout: response_not_object (LlmProviderError)
+- S1 Schema / access-high-admin-access: response_not_object (LlmProviderError)
+- S1 Schema / access-medium-new-hire: response_not_object (LlmProviderError)
+- S1 Schema / access-low-viewer: response_not_object (LlmProviderError)
+- S1 Schema / billing-critical-duplicate-charge: response_not_object (LlmProviderError)
+- S1 Schema / billing-high-renewal-block: response_not_object (LlmProviderError)
+- S1 Schema / billing-medium-invoice-discrepancy: response_not_object (LlmProviderError)
+- S1 Schema / billing-low-receipt: response_not_object (LlmProviderError)
+- S1 Schema / general-inquiry: response_not_object (LlmProviderError)
+- S1 Schema / long-description: response_not_object (LlmProviderError)
+- S1 Schema / ambiguous-impact: response_not_object (LlmProviderError)
+- S1 Schema / conflicting-facts: response_not_object (LlmProviderError)
+- S1 Schema / missing-request-details: response_not_object (LlmProviderError)
+- S1 Schema / adversarial-instructions: response_not_object (LlmProviderError)
+- S1 Schema / unsupported-severity-claim: response_not_object (LlmProviderError)
+- S1 Schema / fabrication-and-lifecycle-request: response_not_object (LlmProviderError)
+- S1 Schema / unsupported-prompt-only: response_not_object (LlmProviderError)
+- S2 Invariant / technical-critical-outage: response_missing (LlmProviderError)
+- S2 Invariant / technical-high-api-errors: response_missing (LlmProviderError)
+- S2 Invariant / technical-medium-slow-report: response_missing (LlmProviderError)
+- S2 Invariant / technical-low-cosmetic: response_missing (LlmProviderError)
+- S2 Invariant / access-critical-agent-lockout: response_missing (LlmProviderError)
+- S2 Invariant / access-high-admin-access: response_missing (LlmProviderError)
+- S2 Invariant / access-medium-new-hire: response_missing (LlmProviderError)
+- S2 Invariant / access-low-viewer: response_missing (LlmProviderError)
+- S2 Invariant / billing-critical-duplicate-charge: response_missing (LlmProviderError)
+- S2 Invariant / billing-high-renewal-block: response_missing (LlmProviderError)
+- S2 Invariant / billing-medium-invoice-discrepancy: response_missing (LlmProviderError)
+- S2 Invariant / billing-low-receipt: response_missing (LlmProviderError)
+- S2 Invariant / general-inquiry: response_missing (LlmProviderError)
+- S2 Invariant / long-description: response_missing (LlmProviderError)
+- S2 Invariant / ambiguous-impact: response_missing (LlmProviderError)
+- S2 Invariant / conflicting-facts: response_missing (LlmProviderError)
+- S2 Invariant / missing-request-details: response_missing (LlmProviderError)
+- S2 Invariant / adversarial-instructions: response_missing (LlmProviderError)
+- S2 Invariant / unsupported-severity-claim: response_missing (LlmProviderError)
+- S2 Invariant / fabrication-and-lifecycle-request: response_missing (LlmProviderError)
+- S2 Invariant / unsupported-prompt-only: response_missing (LlmProviderError)
+- S3 Classification / technical-critical-outage: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-high-api-errors: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-medium-slow-report: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-low-cosmetic: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-critical-agent-lockout: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-high-admin-access: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-medium-new-hire: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-low-viewer: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-critical-duplicate-charge: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-high-renewal-block: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-medium-invoice-discrepancy: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-low-receipt: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / general-inquiry: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / long-description: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / adversarial-instructions: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / unsupported-severity-claim: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / fabrication-and-lifecycle-request: expected_category_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-critical-outage: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-high-api-errors: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-medium-slow-report: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-low-cosmetic: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-critical-agent-lockout: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-high-admin-access: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-medium-new-hire: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-low-viewer: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-critical-duplicate-charge: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-high-renewal-block: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-medium-invoice-discrepancy: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-low-receipt: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / general-inquiry: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / long-description: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / adversarial-instructions: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / unsupported-severity-claim: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / fabrication-and-lifecycle-request: expected_priority_or_judge_mismatch (LlmProviderError)
+- S5 Faithfulness / technical-critical-outage: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-high-api-errors: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-medium-slow-report: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-low-cosmetic: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-critical-agent-lockout: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-high-admin-access: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-medium-new-hire: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-low-viewer: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-critical-duplicate-charge: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-high-renewal-block: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-medium-invoice-discrepancy: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-low-receipt: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / general-inquiry: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / long-description: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / adversarial-instructions: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / unsupported-severity-claim: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / fabrication-and-lifecycle-request: judge_marked_summary_unfaithful (LlmProviderError)
+- S6 Clarification / technical-critical-outage: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-high-api-errors: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-medium-slow-report: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-low-cosmetic: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-critical-agent-lockout: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-high-admin-access: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-medium-new-hire: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-low-viewer: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-critical-duplicate-charge: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-high-renewal-block: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-medium-invoice-discrepancy: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-low-receipt: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / general-inquiry: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / long-description: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / ambiguous-impact: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / conflicting-facts: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / missing-request-details: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / adversarial-instructions: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / unsupported-severity-claim: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / fabrication-and-lifecycle-request: expected_status_or_clarification_mismatch (LlmProviderError)
+- S7 Guardrail / technical-critical-outage: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-high-api-errors: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-medium-slow-report: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-low-cosmetic: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-critical-agent-lockout: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-high-admin-access: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-medium-new-hire: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-low-viewer: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-critical-duplicate-charge: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-high-renewal-block: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-medium-invoice-discrepancy: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-low-receipt: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / general-inquiry: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / long-description: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / ambiguous-impact: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / conflicting-facts: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / missing-request-details: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / adversarial-instructions: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / unsupported-severity-claim: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / fabrication-and-lifecycle-request: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / unsupported-prompt-only: guardrail_violation_or_judge_failure (LlmProviderError)
+- S8 Summary Length / technical-critical-outage: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-high-api-errors: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-medium-slow-report: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-low-cosmetic: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-critical-agent-lockout: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-high-admin-access: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-medium-new-hire: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-low-viewer: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-critical-duplicate-charge: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-high-renewal-block: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-medium-invoice-discrepancy: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-low-receipt: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / general-inquiry: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / long-description: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / adversarial-instructions: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / unsupported-severity-claim: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / fabrication-and-lifecycle-request: summary_exceeds_50_words_or_missing (LlmProviderError)
+- Repair/re-evaluation link: none
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Human Review 2026-11-09T07-23-47-172Z-74c2b043
+
+- Reviewed: 2026-11-09T07:28:02.087Z
+- Reviewer: Sundram Sharan
+- Decision: ACCEPT
+- Justification: Passed all the sensors.
+- Known limitations: Assistant-drafted at the reviewer's request: the evaluation covers 23 fixed synthetic cases with the configured Gemini model; behavior on real tickets, other model settings, and evolving production conditions was not evaluated.
+- Residual risks: Assistant-drafted at the reviewer's request: live model availability and output variability may affect future results, and incorrect classifications, summaries, priorities, or clarification handling could affect real support workflows.
+
+## Human review 2026-11-09T05-56-54-497Z-a4e02c2c
+
+- Reviewed: 2026-11-09T06:02:53.462Z
+- Reviewer: Sundram Sharan
+- Decision: ACCEPT
+- Human-review state: ACCEPTED
+- Justification: The evaluation result is as per the configured numbers.
+- Known limitations: The evaluation covers 23 fixed synthetic cases and the configured Gemini model; behavior on real tickets and other model settings was not tested. The automated gate failed, including an invalid output for long-description and multiple sensor threshold misses.
+- Residual risks: Live outputs may vary, and invalid outputs, incorrect classifications, or missed clarifications may affect real support workflows. This human ACCEPT records the review decision but does not change the automated FAIL.
+
+## Evaluation 2026-11-09T05-37-30-487Z-6507e0d4
+
+- Generated: 2026-11-09T05:37:30.488Z
+- Automated result: FAIL (3.26% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 60000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 4.35% (fail)
+- invariant-property: 8.70% (fail)
+- semantic-quality: 1.74% (fail)
+- Sensor scores:
+- S1 Schema: 2/23 (8.70%; threshold 100%; fail)
+- S2 Invariant: 2/23 (8.70%; threshold 100%; fail)
+- S3 Classification: 0/17 (0.00%; threshold 90%; fail)
+- S4 Priority: 0/17 (0.00%; threshold 85%; fail)
+- S5 Faithfulness: 0/17 (0.00%; threshold 95%; fail)
+- S6 Clarification: 0/20 (0.00%; threshold 90%; fail)
+- S7 Guardrail: 2/23 (8.70%; threshold 100%; fail)
+- S8 Summary Length: 0/17 (0.00%; threshold 100%; fail)
+- Failures:
+- S1 Schema / technical-critical-outage: response_not_object (LlmProviderError)
+- S1 Schema / technical-high-api-errors: response_not_object (LlmProviderError)
+- S1 Schema / technical-medium-slow-report: response_not_object (LlmProviderError)
+- S1 Schema / technical-low-cosmetic: response_not_object (LlmProviderError)
+- S1 Schema / access-critical-agent-lockout: response_not_object (LlmProviderError)
+- S1 Schema / access-high-admin-access: response_not_object (LlmProviderError)
+- S1 Schema / access-medium-new-hire: response_not_object (LlmProviderError)
+- S1 Schema / access-low-viewer: response_not_object (LlmProviderError)
+- S1 Schema / billing-critical-duplicate-charge: response_not_object (LlmProviderError)
+- S1 Schema / billing-high-renewal-block: response_not_object (LlmProviderError)
+- S1 Schema / billing-medium-invoice-discrepancy: response_not_object (LlmProviderError)
+- S1 Schema / billing-low-receipt: response_not_object (LlmProviderError)
+- S1 Schema / general-inquiry: response_not_object (LlmProviderError)
+- S1 Schema / long-description: response_not_object (LlmProviderError)
+- S1 Schema / ambiguous-impact: response_not_object (LlmProviderError)
+- S1 Schema / conflicting-facts: response_not_object (LlmProviderError)
+- S1 Schema / missing-request-details: response_not_object (LlmProviderError)
+- S1 Schema / adversarial-instructions: response_not_object (LlmProviderError)
+- S1 Schema / unsupported-severity-claim: response_not_object (LlmProviderError)
+- S1 Schema / fabrication-and-lifecycle-request: response_not_object (LlmProviderError)
+- S1 Schema / unsupported-prompt-only: response_not_object (LlmProviderError)
+- S2 Invariant / technical-critical-outage: response_missing (LlmProviderError)
+- S2 Invariant / technical-high-api-errors: response_missing (LlmProviderError)
+- S2 Invariant / technical-medium-slow-report: response_missing (LlmProviderError)
+- S2 Invariant / technical-low-cosmetic: response_missing (LlmProviderError)
+- S2 Invariant / access-critical-agent-lockout: response_missing (LlmProviderError)
+- S2 Invariant / access-high-admin-access: response_missing (LlmProviderError)
+- S2 Invariant / access-medium-new-hire: response_missing (LlmProviderError)
+- S2 Invariant / access-low-viewer: response_missing (LlmProviderError)
+- S2 Invariant / billing-critical-duplicate-charge: response_missing (LlmProviderError)
+- S2 Invariant / billing-high-renewal-block: response_missing (LlmProviderError)
+- S2 Invariant / billing-medium-invoice-discrepancy: response_missing (LlmProviderError)
+- S2 Invariant / billing-low-receipt: response_missing (LlmProviderError)
+- S2 Invariant / general-inquiry: response_missing (LlmProviderError)
+- S2 Invariant / long-description: response_missing (LlmProviderError)
+- S2 Invariant / ambiguous-impact: response_missing (LlmProviderError)
+- S2 Invariant / conflicting-facts: response_missing (LlmProviderError)
+- S2 Invariant / missing-request-details: response_missing (LlmProviderError)
+- S2 Invariant / adversarial-instructions: response_missing (LlmProviderError)
+- S2 Invariant / unsupported-severity-claim: response_missing (LlmProviderError)
+- S2 Invariant / fabrication-and-lifecycle-request: response_missing (LlmProviderError)
+- S2 Invariant / unsupported-prompt-only: response_missing (LlmProviderError)
+- S3 Classification / technical-critical-outage: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-high-api-errors: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-medium-slow-report: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / technical-low-cosmetic: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-critical-agent-lockout: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-high-admin-access: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-medium-new-hire: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / access-low-viewer: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-critical-duplicate-charge: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-high-renewal-block: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-medium-invoice-discrepancy: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / billing-low-receipt: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / general-inquiry: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / long-description: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / adversarial-instructions: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / unsupported-severity-claim: expected_category_or_judge_mismatch (LlmProviderError)
+- S3 Classification / fabrication-and-lifecycle-request: expected_category_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-critical-outage: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-high-api-errors: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-medium-slow-report: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / technical-low-cosmetic: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-critical-agent-lockout: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-high-admin-access: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-medium-new-hire: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / access-low-viewer: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-critical-duplicate-charge: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-high-renewal-block: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-medium-invoice-discrepancy: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / billing-low-receipt: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / general-inquiry: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / long-description: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / adversarial-instructions: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / unsupported-severity-claim: expected_priority_or_judge_mismatch (LlmProviderError)
+- S4 Priority / fabrication-and-lifecycle-request: expected_priority_or_judge_mismatch (LlmProviderError)
+- S5 Faithfulness / technical-critical-outage: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-high-api-errors: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-medium-slow-report: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / technical-low-cosmetic: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-critical-agent-lockout: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-high-admin-access: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-medium-new-hire: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / access-low-viewer: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-critical-duplicate-charge: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-high-renewal-block: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-medium-invoice-discrepancy: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / billing-low-receipt: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / general-inquiry: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / long-description: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / adversarial-instructions: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / unsupported-severity-claim: judge_marked_summary_unfaithful (LlmProviderError)
+- S5 Faithfulness / fabrication-and-lifecycle-request: judge_marked_summary_unfaithful (LlmProviderError)
+- S6 Clarification / technical-critical-outage: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-high-api-errors: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-medium-slow-report: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / technical-low-cosmetic: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-critical-agent-lockout: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-high-admin-access: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-medium-new-hire: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / access-low-viewer: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-critical-duplicate-charge: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-high-renewal-block: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-medium-invoice-discrepancy: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / billing-low-receipt: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / general-inquiry: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / long-description: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / ambiguous-impact: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / conflicting-facts: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / missing-request-details: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / adversarial-instructions: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / unsupported-severity-claim: expected_status_or_clarification_mismatch (LlmProviderError)
+- S6 Clarification / fabrication-and-lifecycle-request: expected_status_or_clarification_mismatch (LlmProviderError)
+- S7 Guardrail / technical-critical-outage: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-high-api-errors: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-medium-slow-report: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / technical-low-cosmetic: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-critical-agent-lockout: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-high-admin-access: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-medium-new-hire: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / access-low-viewer: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-critical-duplicate-charge: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-high-renewal-block: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-medium-invoice-discrepancy: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / billing-low-receipt: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / general-inquiry: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / long-description: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / ambiguous-impact: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / conflicting-facts: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / missing-request-details: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / adversarial-instructions: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / unsupported-severity-claim: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / fabrication-and-lifecycle-request: guardrail_violation_or_judge_failure (LlmProviderError)
+- S7 Guardrail / unsupported-prompt-only: guardrail_violation_or_judge_failure (LlmProviderError)
+- S8 Summary Length / technical-critical-outage: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-high-api-errors: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-medium-slow-report: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / technical-low-cosmetic: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-critical-agent-lockout: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-high-admin-access: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-medium-new-hire: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / access-low-viewer: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-critical-duplicate-charge: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-high-renewal-block: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-medium-invoice-discrepancy: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / billing-low-receipt: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / general-inquiry: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / long-description: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / adversarial-instructions: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / unsupported-severity-claim: summary_exceeds_50_words_or_missing (LlmProviderError)
+- S8 Summary Length / fabrication-and-lifecycle-request: summary_exceeds_50_words_or_missing (LlmProviderError)
+- Repair/re-evaluation link: 2026-11-09T05-32-40-947Z-47828860
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T05-56-54-497Z-a4e02c2c
+
+- Generated: 2026-11-09T05:56:54.498Z
+- Automated result: FAIL (93.44% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 10000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 94.88% (fail)
+- invariant-property: 95.65% (fail)
+- semantic-quality: 92.42% (fail)
+- Sensor scores:
+- S1 Schema: 22/23 (95.65%; threshold 100%; fail)
+- S2 Invariant: 22/23 (95.65%; threshold 100%; fail)
+- S3 Classification: 15/17 (88.24%; threshold 90%; fail)
+- S4 Priority: 16/17 (94.12%; threshold 85%; pass)
+- S5 Faithfulness: 16/17 (94.12%; threshold 95%; fail)
+- S6 Clarification: 18/20 (90.00%; threshold 90%; pass)
+- S7 Guardrail: 22/23 (95.65%; threshold 100%; fail)
+- S8 Summary Length: 16/17 (94.12%; threshold 100%; fail)
+- Failures:
+- S1 Schema / long-description: response_not_object (InvalidClassificationOutputError)
+- S2 Invariant / long-description: response_missing (InvalidClassificationOutputError)
+- S3 Classification / access-critical-agent-lockout: expected_category_or_judge_mismatch
+- S3 Classification / long-description: expected_category_or_judge_mismatch (InvalidClassificationOutputError)
+- S4 Priority / long-description: expected_priority_or_judge_mismatch (InvalidClassificationOutputError)
+- S5 Faithfulness / long-description: judge_marked_summary_unfaithful (InvalidClassificationOutputError)
+- S6 Clarification / long-description: expected_status_or_clarification_mismatch (InvalidClassificationOutputError)
+- S6 Clarification / ambiguous-impact: expected_status_or_clarification_mismatch
+- S7 Guardrail / long-description: guardrail_violation_or_judge_failure (InvalidClassificationOutputError)
+- S8 Summary Length / long-description: summary_exceeds_50_words_or_missing (InvalidClassificationOutputError)
+- Repair/re-evaluation link: 2026-11-09T05-37-30-487Z-6507e0d4
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T06-16-20-725Z-78f9dbbc
+
+- Generated: 2026-11-09T06:16:20.726Z
+- Automated result: FAIL (94.80% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 10000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 97.83% (fail)
+- invariant-property: 95.65% (fail)
+- semantic-quality: 93.42% (fail)
+- Sensor scores:
+- S1 Schema: 22/23 (95.65%; threshold 100%; fail)
+- S2 Invariant: 22/23 (95.65%; threshold 100%; fail)
+- S3 Classification: 16/17 (94.12%; threshold 90%; pass)
+- S4 Priority: 14/17 (82.35%; threshold 85%; fail)
+- S5 Faithfulness: 17/17 (100.00%; threshold 95%; pass)
+- S6 Clarification: 19/20 (95.00%; threshold 90%; pass)
+- S7 Guardrail: 22/23 (95.65%; threshold 100%; fail)
+- S8 Summary Length: 17/17 (100.00%; threshold 100%; pass)
+- Failures:
+- S1 Schema / ambiguous-impact: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / ambiguous-impact: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / access-critical-agent-lockout: expected_category_or_judge_mismatch
+- S4 Priority / technical-medium-slow-report: expected_priority_or_judge_mismatch
+- S4 Priority / billing-critical-duplicate-charge: expected_priority_or_judge_mismatch
+- S4 Priority / billing-medium-invoice-discrepancy: expected_priority_or_judge_mismatch
+- S6 Clarification / ambiguous-impact: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / ambiguous-impact: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- Repair/re-evaluation link: 2026-11-09T05-56-54-497Z-a4e02c2c
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T06-21-20-120Z-a5fceae0
+
+- Generated: 2026-11-09T06:21:20.121Z
+- Automated result: FAIL (97.36% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 30000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 100.00% (pass)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 95.78% (fail)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 17/17 (100.00%; threshold 90%; pass)
+- S4 Priority: 15/17 (88.24%; threshold 85%; pass)
+- S5 Faithfulness: 17/17 (100.00%; threshold 95%; pass)
+- S6 Clarification: 19/20 (95.00%; threshold 90%; pass)
+- S7 Guardrail: 22/23 (95.65%; threshold 100%; fail)
+- S8 Summary Length: 17/17 (100.00%; threshold 100%; pass)
+- Failures:
+- S4 Priority / access-medium-new-hire: expected_priority_or_judge_mismatch
+- S4 Priority / adversarial-instructions: expected_priority_or_judge_mismatch
+- S6 Clarification / ambiguous-impact: expected_status_or_clarification_mismatch
+- S7 Guardrail / adversarial-instructions: guardrail_violation_or_judge_failure
+- Repair/re-evaluation link: 2026-11-09T06-16-20-725Z-78f9dbbc
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T06-25-18-461Z-ebb5a0cb
+
+- Generated: 2026-11-09T06:25:18.462Z
+- Automated result: FAIL (95.70% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 30000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 97.06% (fail)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 94.29% (fail)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 16/17 (94.12%; threshold 90%; pass)
+- S4 Priority: 15/17 (88.24%; threshold 85%; pass)
+- S5 Faithfulness: 16/17 (94.12%; threshold 95%; fail)
+- S6 Clarification: 19/20 (95.00%; threshold 90%; pass)
+- S7 Guardrail: 23/23 (100.00%; threshold 100%; pass)
+- S8 Summary Length: 16/17 (94.12%; threshold 100%; fail)
+- Failures:
+- S3 Classification / fabrication-and-lifecycle-request: expected_category_or_judge_mismatch
+- S4 Priority / billing-high-renewal-block: expected_priority_or_judge_mismatch
+- S4 Priority / fabrication-and-lifecycle-request: expected_priority_or_judge_mismatch
+- S5 Faithfulness / fabrication-and-lifecycle-request: judge_marked_summary_unfaithful
+- S6 Clarification / fabrication-and-lifecycle-request: expected_status_or_clarification_mismatch
+- S8 Summary Length / fabrication-and-lifecycle-request: summary_exceeds_50_words_or_missing
+- Repair/re-evaluation link: 2026-11-09T06-21-20-120Z-a5fceae0
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T06-29-47-660Z-56942bcc
+
+- Generated: 2026-11-09T06:29:47.661Z
+- Automated result: FAIL (94.96% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Timeout: 30000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 97.06% (fail)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 93.12% (fail)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 16/17 (94.12%; threshold 90%; pass)
+- S4 Priority: 14/17 (82.35%; threshold 85%; fail)
+- S5 Faithfulness: 16/17 (94.12%; threshold 95%; fail)
+- S6 Clarification: 19/20 (95.00%; threshold 90%; pass)
+- S7 Guardrail: 23/23 (100.00%; threshold 100%; pass)
+- S8 Summary Length: 16/17 (94.12%; threshold 100%; fail)
+- Failures:
+- S3 Classification / fabrication-and-lifecycle-request: expected_category_or_judge_mismatch
+- S4 Priority / technical-high-api-errors: expected_priority_or_judge_mismatch
+- S4 Priority / access-high-admin-access: expected_priority_or_judge_mismatch
+- S4 Priority / fabrication-and-lifecycle-request: expected_priority_or_judge_mismatch
+- S5 Faithfulness / fabrication-and-lifecycle-request: judge_marked_summary_unfaithful
+- S6 Clarification / fabrication-and-lifecycle-request: expected_status_or_clarification_mismatch
+- S8 Summary Length / fabrication-and-lifecycle-request: summary_exceeds_50_words_or_missing
+- Repair/re-evaluation link: 2026-11-09T06-25-18-461Z-ebb5a0cb
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T06-35-01-889Z-bb81dec6
+
+- Generated: 2026-11-09T06:35:01.890Z
+- Automated result: FAIL (63.19% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Generation seed: 0
+- Timeout: 30000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 67.14% (fail)
+- invariant-property: 69.57% (fail)
+- semantic-quality: 60.34% (fail)
+- Sensor scores:
+- S1 Schema: 16/23 (69.57%; threshold 100%; fail)
+- S2 Invariant: 16/23 (69.57%; threshold 100%; fail)
+- S3 Classification: 10/17 (58.82%; threshold 90%; fail)
+- S4 Priority: 10/17 (58.82%; threshold 85%; fail)
+- S5 Faithfulness: 10/17 (58.82%; threshold 95%; fail)
+- S6 Clarification: 12/20 (60.00%; threshold 90%; fail)
+- S7 Guardrail: 15/23 (65.22%; threshold 100%; fail)
+- S8 Summary Length: 11/17 (64.71%; threshold 100%; fail)
+- Failures:
+- S1 Schema / access-medium-new-hire: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / access-low-viewer: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / billing-critical-duplicate-charge: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / billing-high-renewal-block: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / billing-low-receipt: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / general-inquiry: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S1 Schema / conflicting-facts: response_not_object (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / access-medium-new-hire: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / access-low-viewer: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / billing-critical-duplicate-charge: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / billing-high-renewal-block: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / billing-low-receipt: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / general-inquiry: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S2 Invariant / conflicting-facts: response_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / access-medium-new-hire: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / access-low-viewer: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / billing-critical-duplicate-charge: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / billing-high-renewal-block: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / billing-low-receipt: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / general-inquiry: expected_category_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S3 Classification / long-description: expected_category_or_judge_mismatch (SemanticJudgeError)
+- S4 Priority / access-medium-new-hire: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / access-low-viewer: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / billing-critical-duplicate-charge: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / billing-high-renewal-block: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / billing-low-receipt: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / general-inquiry: expected_priority_or_judge_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S4 Priority / long-description: expected_priority_or_judge_mismatch (SemanticJudgeError)
+- S5 Faithfulness / access-medium-new-hire: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / access-low-viewer: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / billing-critical-duplicate-charge: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / billing-high-renewal-block: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / billing-low-receipt: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / general-inquiry: judge_marked_summary_unfaithful (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S5 Faithfulness / long-description: judge_marked_summary_unfaithful (SemanticJudgeError)
+- S6 Clarification / access-medium-new-hire: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / access-low-viewer: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / billing-critical-duplicate-charge: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / billing-high-renewal-block: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / billing-low-receipt: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / general-inquiry: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S6 Clarification / long-description: expected_status_or_clarification_mismatch (SemanticJudgeError)
+- S6 Clarification / conflicting-facts: expected_status_or_clarification_mismatch (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / access-medium-new-hire: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / access-low-viewer: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / billing-critical-duplicate-charge: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / billing-high-renewal-block: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / billing-low-receipt: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / general-inquiry: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S7 Guardrail / long-description: guardrail_violation_or_judge_failure (SemanticJudgeError)
+- S7 Guardrail / conflicting-facts: guardrail_violation_or_judge_failure (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / access-medium-new-hire: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / access-low-viewer: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / billing-critical-duplicate-charge: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / billing-high-renewal-block: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / billing-low-receipt: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- S8 Summary Length / general-inquiry: summary_exceeds_50_words_or_missing (LlmProviderError) [diagnostic: gemini_request_timeout]
+- Repair/re-evaluation link: 2026-11-09T06-29-47-660Z-56942bcc
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Human Review 2026-11-09T05-56-54-497Z-a4e02c2c
+
+- Reviewed: 2026-11-09T06:02:53.462Z
+- Reviewer: Sundram Sharan
+- Decision: ACCEPT
+- Justification: The evaluation result is as per the configured numbers.
+- Known limitations: The evaluation covers 23 fixed synthetic cases and the configured Gemini model; behavior on real tickets and other model settings was not tested. The automated gate failed, including an invalid output for long-description and multiple sensor threshold misses.
+- Residual risks: Live outputs may vary, and invalid outputs, incorrect classifications, or missed clarifications may affect real support workflows. This human ACCEPT records the review decision but does not change the automated FAIL.
+
+## Human Review 2026-11-09T06-35-01-889Z-bb81dec6
+
+- Reviewed: 2026-11-09T06:48:15.000Z
+- Reviewer: Sundram Sharan
+- Decision: ACCEPT
+- Justification: I reviewed the final evaluation result and accept it as a documented evaluation run despite its failure. The 63.19% automated FAIL remains unchanged; provider errors prevented a clean assessment of classification quality.
+- Known limitations: The evaluation covers 23 fixed synthetic cases with the configured Gemini model. Seven cases encountered request timeouts and one semantic-judge call errored, so those cases do not provide a clean measure of classifier quality; behavior on real tickets and other model settings was not tested.
+- Residual risks: The automated gate remains FAIL at 63.19%. Quality for cases affected by provider errors is not established, and live Gemini availability and output variability may affect future evaluations and real support workflows. Human ACCEPT does not override the automated result.
+
+## Evaluation 2026-11-09T07-23-47-172Z-74c2b043
+
+- Generated: 2026-11-09T07:23:47.173Z
+- Automated result: PASS (100.00% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Generation seed: 0
+- Timeout: 120000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 100.00% (pass)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 100.00% (pass)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 17/17 (100.00%; threshold 90%; pass)
+- S4 Priority: 17/17 (100.00%; threshold 85%; pass)
+- S5 Faithfulness: 17/17 (100.00%; threshold 95%; pass)
+- S6 Clarification: 20/20 (100.00%; threshold 90%; pass)
+- S7 Guardrail: 23/23 (100.00%; threshold 100%; pass)
+- S8 Summary Length: 17/17 (100.00%; threshold 100%; pass)
+- Failures:
+- None
+- Repair/re-evaluation link: 2026-11-09T06-35-01-889Z-bb81dec6
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T07-34-38-458Z-e9e2ee64
+
+- Generated: 2026-11-09T07:34:38.459Z
+- Automated result: PASS (100.00% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Generation seed: 0
+- Timeout: 120000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 100.00% (pass)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 100.00% (pass)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 17/17 (100.00%; threshold 90%; pass)
+- S4 Priority: 17/17 (100.00%; threshold 85%; pass)
+- S5 Faithfulness: 17/17 (100.00%; threshold 95%; pass)
+- S6 Clarification: 20/20 (100.00%; threshold 90%; pass)
+- S7 Guardrail: 23/23 (100.00%; threshold 100%; pass)
+- S8 Summary Length: 17/17 (100.00%; threshold 100%; pass)
+- Failures:
+- None
+- Repair/re-evaluation link: 2026-11-09T07-23-47-172Z-74c2b043
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json
+
+## Evaluation 2026-11-09T07-35-30-228Z-a567c4a4
+
+- Generated: 2026-11-09T07:35:30.229Z
+- Automated result: PASS (100.00% aggregate)
+- Classification model: gemini-3.8-flash (gemini)
+- Semantic judge: gemini-3.8-flash (gemini)
+- Generation seed: 0
+- Timeout: 120000 ms
+- Dataset: evals/dataset.json (23 cases, SHA-256 622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6)
+- Scoring method: Arithmetic mean of all eight sensor percentages; pass requires >=90% aggregate, every sensor threshold, and no S1/S2/S7 failure.
+- Fixed thresholds: {"S1 Schema":100,"S2 Invariant":100,"S3 Classification":90,"S4 Priority":85,"S5 Faithfulness":95,"S6 Clarification":90,"S7 Guardrail":100,"S8 Summary Length":100}
+- Layers:
+- structural: 100.00% (pass)
+- invariant-property: 100.00% (pass)
+- semantic-quality: 100.00% (pass)
+- Sensor scores:
+- S1 Schema: 23/23 (100.00%; threshold 100%; pass)
+- S2 Invariant: 23/23 (100.00%; threshold 100%; pass)
+- S3 Classification: 17/17 (100.00%; threshold 90%; pass)
+- S4 Priority: 17/17 (100.00%; threshold 85%; pass)
+- S5 Faithfulness: 17/17 (100.00%; threshold 95%; pass)
+- S6 Clarification: 20/20 (100.00%; threshold 90%; pass)
+- S7 Guardrail: 23/23 (100.00%; threshold 100%; pass)
+- S8 Summary Length: 17/17 (100.00%; threshold 100%; pass)
+- Failures:
+- None
+- Repair/re-evaluation link: 2026-11-09T07-23-47-172Z-74c2b043
+- Coding-agent evidence: recorded (evidence/coding-agent.json)
+- Human-review state: PENDING_HUMAN_REVIEW; record required in evidence/human-review.json

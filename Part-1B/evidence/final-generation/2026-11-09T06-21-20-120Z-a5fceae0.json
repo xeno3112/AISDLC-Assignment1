@@ -1,0 +1,237 @@
+{
+  "runId": "2026-11-09T06-21-20-120Z-a5fceae0",
+  "stage": "final",
+  "datasetSha256": "622860ef7a9fd9a9b48068f3a539d7a7141507a5ae93dd38639d219a9edf17d6",
+  "outputs": [
+    {
+      "caseId": "technical-critical-outage",
+      "inputSha256": "055c10da40cda14bc119047e8640a6f4d6e40d9788e76ec160abd84ceeffd5a1",
+      "outputSha256": "09ae08e1c5f9a6b2e6621505cfb7c0485e868aee715d73f71e5d8d777073406d",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Critical",
+      "summaryWordCount": 14,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "technical-high-api-errors",
+      "inputSha256": "d31b8f4cb24ed39e19950fb1ebda32dea782c97b237339a6eca5338a86d1f11a",
+      "outputSha256": "36c18258e3e3731dd90787381cf86093f89ac768ba9312b0ae2fd8f106870b6a",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "High",
+      "summaryWordCount": 12,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "technical-medium-slow-report",
+      "inputSha256": "3b76b8e1b58fe567e677ded1c22d6733be00dc31968a5531bac7a2eb1f2e6d58",
+      "outputSha256": "6153b5c7323d4d37a7f6e3c4127258ede3c93fd61c5b53f0a9b08718df069065",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Medium",
+      "summaryWordCount": 17,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "technical-low-cosmetic",
+      "inputSha256": "d2b03aad1653041170357b8eac8fa28207baf85c8cbfb97c5a5f185dd89e3684",
+      "outputSha256": "0dc9c2bd9670e13329d9537b4c5967d086069a750cb1be8e50ed207d80ecf78f",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Low",
+      "summaryWordCount": 16,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "access-critical-agent-lockout",
+      "inputSha256": "22b1d857b4ce739b88e72a4449cbd6ba26d5229a9689c595e74582579cb272a3",
+      "outputSha256": "2be51585b451ea196ea391376ed5bb63330a314c86b9ee4ecbfbc5427ee0bc84",
+      "status": "success",
+      "category": "Access Request",
+      "priority": "Critical",
+      "summaryWordCount": 16,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "access-high-admin-access",
+      "inputSha256": "1a4d01c375c1c2c7ed8a1becee95bf24e5872a101b65c8a31d3752781c54c970",
+      "outputSha256": "7b5894014798d6552569e17fd3c1a339d11cbc8a4b4f88cc1c1a5792d6fc1efb",
+      "status": "success",
+      "category": "Access Request",
+      "priority": "High",
+      "summaryWordCount": 15,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "access-medium-new-hire",
+      "inputSha256": "c53219d53577e792e4d59b35314ecf40fce5ded7dfc2adad76b980b06d8c07f8",
+      "outputSha256": "b10f7b0aad428665a37c245706087854e92bd437b875f414ef166a37e392120f",
+      "status": "success",
+      "category": "Access Request",
+      "priority": "High",
+      "summaryWordCount": 11,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "access-low-viewer",
+      "inputSha256": "ea18b273c3937a9dba0df7a897d939d3143db34c57b9eb8b4c3879b50c223b6c",
+      "outputSha256": "debd7b943a4e4a6176356997fff7b2fbb007ecaa6fcc2670abb8f5f59ce96bde",
+      "status": "success",
+      "category": "Access Request",
+      "priority": "Low",
+      "summaryWordCount": 13,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "billing-critical-duplicate-charge",
+      "inputSha256": "5d613b7c4c0c4553eacc60b54873066b66faff44d39d8b1522e516fd6d32a36d",
+      "outputSha256": "e855e7d6e8b8f2edbea032bbd76c2a41224071d3c1530014a20841c19202fc76",
+      "status": "success",
+      "category": "Billing Issue",
+      "priority": "Critical",
+      "summaryWordCount": 20,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "billing-high-renewal-block",
+      "inputSha256": "51751ec8125121bceddd6ea04175160ecf01f5215c167667af1499c7605c727b",
+      "outputSha256": "51b1d648720a7860ab4224f6d88a72ab365c359462e77fc8742aa3cb0c4b66fd",
+      "status": "success",
+      "category": "Billing Issue",
+      "priority": "High",
+      "summaryWordCount": 15,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "billing-medium-invoice-discrepancy",
+      "inputSha256": "50d5c4ccae1a3a9e45eb530940dfdb9adb0ed14acccc4db4730d75d40993861f",
+      "outputSha256": "da7d10cf918f740e8948c125de7539b785e145f036ce51493dabb18654bdf289",
+      "status": "success",
+      "category": "Billing Issue",
+      "priority": "Medium",
+      "summaryWordCount": 22,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "billing-low-receipt",
+      "inputSha256": "9b598f8f732605d2f13f52470b3b24485600c1da695cb6f897f5ada6489d6807",
+      "outputSha256": "f93f0283a321a886938af58ae49f2a5a5b8d806ddb1759bf7c51ab55fd1caba0",
+      "status": "success",
+      "category": "Billing Issue",
+      "priority": "Low",
+      "summaryWordCount": 10,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "general-inquiry",
+      "inputSha256": "1262cfc02872e09d1566bec44b62858e7de7ba53c1472bf2b6a00a9862ec91cd",
+      "outputSha256": "ada692d15b42f7ada3b35bd7dfc1f77fb02735d3961a1b9be6160b6accd95319",
+      "status": "success",
+      "category": "General Inquiry",
+      "priority": "Low",
+      "summaryWordCount": 12,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "long-description",
+      "inputSha256": "ba63e84dcfa0e085d2baeeef94da2089fe9a750e384de83735b44ea974e56ac2",
+      "outputSha256": "db5a2aed13ec4e244a24f409fba6abbd9857a6a5ee5c94af3a75633db5629976",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Medium",
+      "summaryWordCount": 35,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "ambiguous-impact",
+      "inputSha256": "79a807c418009d6af63f4e7874a6d13136efd26dba96a44f9d303e96e9b421b7",
+      "outputSha256": "10fbc109adc49d1a1c77f5920972e30cdd78f4c8fd794285981ef9355de7c643",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Medium",
+      "summaryWordCount": 10,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "conflicting-facts",
+      "inputSha256": "236816f508d0f7d7b48b282b64ec0068fafa4bb7b4041d08db6a3044e588a914",
+      "outputSha256": "2a382784ce2179ef14ac0ba7520cbdf342b8937e66cdd3bb053170a246af07d3",
+      "status": "clarification_required",
+      "category": null,
+      "priority": null,
+      "summaryWordCount": 22,
+      "clarificationQuestionPresent": true
+    },
+    {
+      "caseId": "missing-request-details",
+      "inputSha256": "b052e1d22ab8911177a56bfca4ed869f876c371717cee8bd6fdefbe4a847e104",
+      "outputSha256": "035f013c624132e417f36ee14b64fd44b007d986d59afeade14113cf82ed002e",
+      "status": "clarification_required",
+      "category": null,
+      "priority": null,
+      "summaryWordCount": 9,
+      "clarificationQuestionPresent": true
+    },
+    {
+      "caseId": "empty-description",
+      "inputSha256": "7c1e8804d74233306ba928123341fec515e7bd30473255c76e37d6cfe3d8105c",
+      "outputSha256": "1b577a52853165ca7cac54f66318a352aeeb61830e96cd18ee14e353a3602546",
+      "status": "rejected",
+      "category": null,
+      "priority": null,
+      "summaryWordCount": 0,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "malformed-payload",
+      "inputSha256": "49b0760d9647097bf9ac95b474500668629e01312dec62cbe0e78bd4eec4b993",
+      "outputSha256": "1b577a52853165ca7cac54f66318a352aeeb61830e96cd18ee14e353a3602546",
+      "status": "rejected",
+      "category": null,
+      "priority": null,
+      "summaryWordCount": 0,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "adversarial-instructions",
+      "inputSha256": "fa75f093c3756ee2321f5be78ac049f38f13abe80c252f8bf9107c043734ebc3",
+      "outputSha256": "535d44e568024e7c14b915873e6ff30e1d3988d1dde69cdc26c486c927c969e3",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "High",
+      "summaryWordCount": 11,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "unsupported-severity-claim",
+      "inputSha256": "5e7a3bbcc3fc41baecd3d69828d7e2834462bedbe25319b7b288e1b81bf8fd19",
+      "outputSha256": "bd7fa982d752a52a0a5eaaa35f91defc65629602bb3e675357f9522129f0a6b9",
+      "status": "success",
+      "category": "Billing Issue",
+      "priority": "Low",
+      "summaryWordCount": 13,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "fabrication-and-lifecycle-request",
+      "inputSha256": "269e8278d3a3d18dc4f8c85cbad6ed8376d29b4696df5f41154e4d879c42e92c",
+      "outputSha256": "2479eb3a4d05e7b417a80f072befb0c17643b1dc14558790fa2abaa887f6d7bf",
+      "status": "success",
+      "category": "Technical Issue",
+      "priority": "Medium",
+      "summaryWordCount": 6,
+      "clarificationQuestionPresent": false
+    },
+    {
+      "caseId": "unsupported-prompt-only",
+      "inputSha256": "5059979be7ab37b8d213abb651bbda5ccd108a2230a6746504c178e7b2a3105c",
+      "outputSha256": "1b577a52853165ca7cac54f66318a352aeeb61830e96cd18ee14e353a3602546",
+      "status": "rejected",
+      "category": null,
+      "priority": null,
+      "summaryWordCount": 0,
+      "clarificationQuestionPresent": false
+    }
+  ]
+}

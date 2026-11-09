@@ -1,0 +1,29 @@
+[
+  {
+    "evaluationRunId": "2026-11-09T05-56-54-497Z-a4e02c2c",
+    "reviewer": "Sundram Sharan",
+    "decision": "ACCEPT",
+    "justification": "The evaluation result is as per the configured numbers.",
+    "knownLimitations": "The evaluation covers 23 fixed synthetic cases and the configured Gemini model; behavior on real tickets and other model settings was not tested. The automated gate failed, including an invalid output for long-description and multiple sensor threshold misses.",
+    "residualRisks": "Live outputs may vary, and invalid outputs, incorrect classifications, or missed clarifications may affect real support workflows. This human ACCEPT records the review decision but does not change the automated FAIL.",
+    "timestamp": "2026-11-09T06:02:53.462Z"
+  },
+  {
+    "evaluationRunId": "2026-11-09T06-35-01-889Z-bb81dec6",
+    "reviewer": "Sundram Sharan",
+    "decision": "ACCEPT",
+    "justification": "I reviewed the final evaluation result and accept it as a documented evaluation run despite its failure. The 63.19% automated FAIL remains unchanged; provider errors prevented a clean assessment of classification quality.",
+    "knownLimitations": "The evaluation covers 23 fixed synthetic cases with the configured Gemini model. Seven cases encountered request timeouts and one semantic-judge call errored, so those cases do not provide a clean measure of classifier quality; behavior on real tickets and other model settings was not tested.",
+    "residualRisks": "The automated gate remains FAIL at 63.19%. Quality for cases affected by provider errors is not established, and live Gemini availability and output variability may affect future evaluations and real support workflows. Human ACCEPT does not override the automated result.",
+    "timestamp": "2026-11-09T06:48:15.000Z"
+  },
+  {
+    "evaluationRunId": "2026-11-09T07-23-47-172Z-74c2b043",
+    "reviewer": "Sundram Sharan",
+    "decision": "ACCEPT",
+    "justification": "Passed all the sensors.",
+    "knownLimitations": "Assistant-drafted at the reviewer's request: the evaluation covers 23 fixed synthetic cases with the configured Gemini model; behavior on real tickets, other model settings, and evolving production conditions was not evaluated.",
+    "residualRisks": "Assistant-drafted at the reviewer's request: live model availability and output variability may affect future results, and incorrect classifications, summaries, priorities, or clarification handling could affect real support workflows.",
+    "timestamp": "2026-11-09T07:28:02.087Z"
+  }
+]

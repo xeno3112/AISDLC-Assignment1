@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Support Ticket Classification API
+  version: 1.0.0
+  description: REST API for classifying support tickets, requesting clarification, and rejecting malformed inputs.
+servers:
+  - url: http://localhost:4000/api/v1
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+
+  /tickets/classify:
+    post:
+      summary: Classify a support ticket
+      operationId: classifyTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketSubmission'
+      responses:
+        '200':
+          description: Ticket classified successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationResult'
+        '400':
+          description: Invalid JSON or malformed request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Input cannot be processed safely or must be clarified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    TicketSubmission:
+      type: object
+      required: [description]
+      properties:
+        description:
+          type: string
+          minLength: 1
+          description: Natural-language support ticket text.
+        source:
+          type: string
+          nullable: true
+          description: Optional client identifier.
+
+    ClassificationResult:
+      type: object
+      required: [category, priority, summary, status, clarification_question]
+      additionalProperties: false
+      properties:
+        category:
+          type: string
+          nullable: true
+          enum: [Technical Issue, Access Request, Billing Issue, General Inquiry, null]
+        priority:
+          type: string
+          nullable: true
+          enum: [Low, Medium, High, Critical, null]
+        summary:
+          type: string
+          maxLength: 250
+          description: Human-readable summary for the outcome; must be under 50 words for successful responses and empty for rejected outcomes.
+        status:
+          type: string
+          enum: [success, clarification_required, rejected]
+        clarification_question:
+          type: string
+          nullable: true
+          description: Required when status is clarification_required; null for success and rejected responses.
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: Safe error message that does not expose secrets or internal configuration.
